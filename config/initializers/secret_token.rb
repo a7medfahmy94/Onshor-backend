@@ -16,4 +16,4 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-Backend::Application.config.secret_token = 'a408fdc965892876a9ddcad4b85b2533efed4c6c6652a1b67919d88ef356d5491369152fde9038cd3b58df32d61d9d46e2715c280a976259bc05a1025f6743fd'
+OnshorBackend::Application.config.secret_token = '6f74496923058e1c304fad3b10c1d6f8f40563d850e930a84a0b43e71fa853faaec1b459d8c1775629ae3ace0c306df5f2910765c55b99927d920af49c7a382d'
