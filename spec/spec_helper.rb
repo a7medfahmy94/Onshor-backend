@@ -32,8 +32,9 @@ Spork.prefork do
     config.use_transactional_fixtures = false
     config.infer_spec_type_from_file_location!
     config.include FactoryGirl::Syntax::Methods
-    
+
     config.before(:suite) do
+      FactoryGirl.lint
       DatabaseCleaner.clean_with(:truncation, pre_count: true, cache_tables: true)
     end
 

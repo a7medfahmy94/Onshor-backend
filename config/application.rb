@@ -23,10 +23,8 @@ module OnshorBackend
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.generators do |g|
-      g.test_framework :rspec,
-      :view_specs    => false,
-      :request_specs => false,
-      :routing_specs => false
+      g.test_framework nil
     end
+    
   end
 end
