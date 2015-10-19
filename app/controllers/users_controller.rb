@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:device_id, :gcm_registration_id, :radius, :number_of_shares, :number_of_ignores)
+      params.require(:user).permit(:device_id, :gcm_registration_id, 
+        :radius, :number_of_shares, :number_of_ignores, :longitude, :latitude)
     end
 end

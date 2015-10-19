@@ -10,7 +10,9 @@ RSpec.describe UsersController, :type => :controller do
       device_id: 1,
       number_of_shares: 1,
       number_of_ignores: 1,
-      radius: 1.5
+      radius: 1.5,
+      longitude: 31.208853,
+      latitude: 30.013056
     }
   }
 
