@@ -22,3 +22,8 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'guard-spork'
 end
+
+group :development do
+  gem 'pry-rails'
+  gem "awesome_print", require:"ap"
+end

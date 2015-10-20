@@ -54,6 +54,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    awesome_print (1.6.1)
     builder (3.2.2)
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
@@ -114,6 +115,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -192,12 +195,14 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers!
   apipie-rails!
+  awesome_print
   database_cleaner
   factory_girl_rails
   guard
   guard-rspec
   guard-spork
   mysql2 (~> 0.3.20)
+  pry-rails
   rails (= 4.2.2)
   rails-api
   rspec-rails (~> 3.0.0)
