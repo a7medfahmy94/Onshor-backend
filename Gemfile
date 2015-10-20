@@ -10,6 +10,8 @@ gem 'spring', :group => :development
 
 gem 'mysql2', '~> 0.3.20'
 
+gem 'apipie-rails', github: 'Apipie/apipie-rails', ref: '928bd858fd14ec67eeb9483ba0d43b3be8339608'
+gem 'active_model_serializers', github: "rails-api/active_model_serializers"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
