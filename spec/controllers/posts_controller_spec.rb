@@ -10,22 +10,20 @@ RSpec.describe PostsController, :type => :controller do
 
   let(:invalid_attributes) {
     {
-      number_of_shares: 1,
-      number_of_ignores: 1
+      number_of_shares: 1
     }
   }
 
 
   describe "GET index" do
     it "assigns all posts as @posts" do
-      post = Post.create! valid_attributes
       get :index, {}
       expect(assigns(:posts)).to eq([post])
     end
   end
   describe "GET show" do
     it "assigns the requested post as @post" do
-      get :show, {:id => post.to_param}, valid_session
+      get :show, {:id => post.to_param}
       expect(assigns(:post)).to eq(post)
     end
   end
