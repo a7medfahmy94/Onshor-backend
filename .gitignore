@@ -19,6 +19,8 @@
 /db/schema.rb
 /config/database.yml
 /config/initializers/secret_token.rb
+/Gemfile.lock
+
 
 /public/*
 Gemfile.lock
