@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PostsController, :type => :controller do
 
-  let!(:post) {FactoryGirl.create(:post)}
+  let!(:post_obj) {FactoryGirl.create(:post)}
 
   let(:valid_attributes) {
     FactoryGirl.build(:post).attributes.symbolize_keys
@@ -18,13 +18,13 @@ RSpec.describe PostsController, :type => :controller do
   describe "GET index" do
     it "assigns all posts as @posts" do
       get :index, {}
-      expect(assigns(:posts)).to eq([post])
+      expect(assigns(:posts)).to eq([post_obj])
     end
   end
   describe "GET show" do
     it "assigns the requested post as @post" do
-      get :show, {:id => post.to_param}
-      expect(assigns(:post)).to eq(post)
+      get :show, {:id => post_obj.to_param}
+      expect(assigns(:post)).to eq(post_obj)
     end
   end
 
@@ -60,21 +60,21 @@ RSpec.describe PostsController, :type => :controller do
       }
 
       it "updates the requested post" do
-        put :update, {:id => post.to_param, :post => new_attributes}
-        post.reload
-        expect(post.number_of_shares).to eq(5)
+        put :update, {:id => post_obj.to_param, :post => new_attributes}
+        post_obj.reload
+        expect(post_obj.number_of_shares).to eq(5)
       end
 
       it "assigns the requested post as @post" do
-        put :update, {:id => post.to_param, :post => valid_attributes}
-        expect(assigns(:post)).to eq(post)
+        put :update, {:id => post_obj.to_param, :post => valid_attributes}
+        expect(assigns(:post)).to eq(post_obj)
       end
     end
 
     describe "with invalid params" do
       it "assigns the post as @post" do
-        put :update, {:id => post.to_param, :post => invalid_attributes}
-        expect(assigns(:post)).to eq(post)
+        put :update, {:id => post_obj.to_param, :post => invalid_attributes}
+        expect(assigns(:post)).to eq(post_obj)
       end
     end
   end
@@ -82,7 +82,7 @@ RSpec.describe PostsController, :type => :controller do
   describe "DELETE destroy" do
     it "destroys the requested post" do
       expect {
-        delete :destroy, {:id => post.to_param}
+        delete :destroy, {:id => post_obj.to_param}
       }.to change(Post, :count).by(-1)
     end
   end
