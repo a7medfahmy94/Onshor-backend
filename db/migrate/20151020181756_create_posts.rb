@@ -3,8 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.text :content
       t.references :user, index: true, foreign_key: true
-      t.integer :number_of_ignores
-      t.integer :number_of_shares
+      t.integer :number_of_ignores , :default => 0
+      t.integer :number_of_shares , :default => 0
 
       t.timestamps null: false
     end
