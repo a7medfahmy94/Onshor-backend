@@ -1,19 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-
-    render json: @users
-  end
-
   def show
     if @user
       render json: @user
     else
-      @user = User.new(user_params)
+      @user = User.new(device_id: params[:id])
 
       if @user.save
         render json: @user, status: :created, location: @user
@@ -46,7 +38,7 @@ class UsersController < ApplicationController
   private
 
     def set_user
-      @user = User.where(device_id: params[:device_id]).first
+      @user = User.where(device_id: params[:id]).first
     end
 
     def user_params
