@@ -90,6 +90,7 @@ GEM
       guard (~> 2.0)
       guard-compat (~> 1.0)
       spork (>= 0.8.4)
+    httpclient (2.8.0)
     i18n (0.7.0)
     json (1.8.3)
     listen (3.0.3)
@@ -104,6 +105,7 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    multi_json (1.12.0)
     mysql2 (0.3.20)
     nenv (0.2.0)
     nokogiri (1.6.6.2)
@@ -117,6 +119,11 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    pusher (0.18.0)
+      httpclient (~> 2.7)
+      multi_json (~> 1.0)
+      pusher-signature (~> 0.1.8)
+    pusher-signature (0.1.8)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -203,6 +210,7 @@ DEPENDENCIES
   guard-spork
   mysql2 (~> 0.3.20)
   pry-rails
+  pusher
   rails (= 4.2.2)
   rails-api
   rspec-rails (~> 3.0.0)
@@ -210,4 +218,4 @@ DEPENDENCIES
   spring
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
