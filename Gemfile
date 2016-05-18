@@ -28,3 +28,7 @@ group :development do
   gem 'pry-rails'
   gem "awesome_print", require:"ap"
 end
+
+group :production do
+  gem 'pg'
+end

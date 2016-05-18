@@ -113,6 +113,7 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pg (0.18.4)
     pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -209,6 +210,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   mysql2 (~> 0.3.20)
+  pg
   pry-rails
   pusher
   rails (= 4.2.2)
