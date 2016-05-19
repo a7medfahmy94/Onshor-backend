@@ -69,6 +69,10 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.10)
     formatador (0.2.5)
+    geokit (1.10.0)
+    geokit-rails (2.1.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guard (2.13.0)
@@ -206,6 +210,7 @@ DEPENDENCIES
   awesome_print
   database_cleaner
   factory_girl_rails
+  geokit-rails
   guard
   guard-rspec
   guard-spork

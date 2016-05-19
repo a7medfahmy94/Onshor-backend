@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  acts_as_mappable :default_units => :kms,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+  
   validates :device_id , presence: true
   # validates :gcm_registration_id , presence: true
   # validates :radius , presence: true

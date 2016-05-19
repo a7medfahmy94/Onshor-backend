@@ -12,8 +12,9 @@ class Post < ActiveRecord::Base
   private
 
   def publish_post
-    users = User.pluck(:id)
-    Pusher.trigger(users.map(&:to_s), 'new_post', {
+    km = ENV["NORMAL_USER_CIRCLE"].to_f
+    circle = User.within(km, origin: user).pluck(:id)
+    Pusher.trigger(circle.map(&:to_s), 'new_post', {
       message: self.as_json
     })
   end
