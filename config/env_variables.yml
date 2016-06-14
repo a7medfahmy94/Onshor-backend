@@ -1,0 +1,4 @@
+development:
+  NORMAL_USER_CIRCLE: '5'
+production:
+  NORMAL_USER_CIRCLE: '5'

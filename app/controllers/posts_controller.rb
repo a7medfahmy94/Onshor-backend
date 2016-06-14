@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy, :share]
 
   api :GET, '/posts',"Get all posts"
   def index
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    
+
     if @post.save
       render json: @post, status: :created, location: @post
     else
@@ -44,6 +44,11 @@ class PostsController < ApplicationController
     @post.destroy
 
     head :no_content
+  end
+
+  # expects :id of post and :user_id
+  def share
+    @post.publish_post(User.find(params[:user_id]))
   end
 
   private
