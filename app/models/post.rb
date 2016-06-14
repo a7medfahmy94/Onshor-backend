@@ -12,12 +12,12 @@ class Post < ActiveRecord::Base
     km = ENV["NORMAL_USER_CIRCLE"].to_f
     circle = User.within(km, origin: origin).pluck(:id)
     puts "*******************"
+    puts ":::: Sending to ::::"
     puts circle.inspect
-    puts km
     puts "*******************"
     unless circle.empty?
       Pusher.trigger(circle.map(&:to_s), 'new_post', {
-        message: self.as_json
+        message: self.as_json.merge({publisher: origin.id})
       })
     end
   end
