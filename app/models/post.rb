@@ -7,25 +7,46 @@ class Post < ActiveRecord::Base
   validates_associated :user
 
   after_create :publish_own_post
+  before_create :set_defaults
 
   def publish_post(origin)
     km = ENV["NORMAL_USER_CIRCLE"].to_f
-    circle = User.within(km, origin: origin).pluck(:id)
-    puts "*******************"
-    puts ":::: Sending to ::::"
-    puts circle.inspect
-    puts "*******************"
+    users = unseen_users
+    circle = users.within(km, origin: origin).pluck(:device_id)
     unless circle.empty?
-      Pusher.trigger(circle.map(&:to_s), 'new_post', {
-        message: self.as_json.merge({publisher: origin.id})
-      })
+      circle.each do |ch|
+        push(ch,origin.id)
+      end
     end
   end
 
-  private
+private
+
+  def push(ch,id)
+    begin
+      Pusher.trigger(ch, 'new_post', {
+        message: self.as_json.merge({publisher: id})
+      })
+    rescue Pusher::Error => e
+      puts "*********************"
+      puts "*********************"
+      puts e.inspect
+      puts "*********************"
+      puts "*********************"
+    end
+  end
 
   def publish_own_post
     publish_post(user)
+  end
+
+  def unseen_users
+    User.where.not(id: user_ids + [user_id])
+  end
+
+  def set_defaults
+    self.number_of_shares = 0
+    self.number_of_ignores = 0
   end
 
 end

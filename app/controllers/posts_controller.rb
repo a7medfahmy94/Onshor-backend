@@ -47,8 +47,13 @@ class PostsController < ApplicationController
   end
 
   # expects :id of post and :user_id
+  # POST /posts/:id?:user_id
   def share
-    @post.publish_post(User.find(params[:user_id]))
+    @user = User.find(params[:user_id])
+    PostsUser.create(user: @user, post: @post, action: :share)
+    @post.number_of_shares += 1
+    @post.save
+    @post.publish_post(@user)
   end
 
   private
