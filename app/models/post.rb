@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  attr_accessor :reply_to
+
   belongs_to :user
   has_many :posts_users
   has_many :users , through: :posts_users
@@ -6,8 +8,11 @@ class Post < ActiveRecord::Base
   validates :user_id , presence: true
   validates_associated :user
 
-  after_create :publish_own_post
+  after_create :publish_own_post, if: :reply?
+  after_create :reply, unless: :reply?
   before_create :set_defaults
+
+
 
   def publish_post(origin)
     km = ENV["NORMAL_USER_CIRCLE"].to_f
@@ -47,6 +52,15 @@ private
   def set_defaults
     self.number_of_shares = 0
     self.number_of_ignores = 0
+  end
+
+  def reply?
+    reply_to.nil?
+  end
+
+  def reply
+    receiver_device_id = User.find(reply_to).device_id
+    push(receiver_device_id, user.id)
   end
 
 end
