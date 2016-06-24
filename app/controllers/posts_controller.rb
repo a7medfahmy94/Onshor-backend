@@ -63,6 +63,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:content, :user_id, :number_of_ignores, :number_of_shares, :reply_to)
+      params.require(:post).permit(:content, :user_id, :number_of_ignores, :number_of_shares, :reply_to, :priority)
     end
 end

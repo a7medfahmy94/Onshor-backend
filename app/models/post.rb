@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   attr_accessor :reply_to
+  enum priority: [:high, :medium, :low]
 
   belongs_to :user
   has_many :posts_users
