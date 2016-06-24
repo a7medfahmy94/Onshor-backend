@@ -27,11 +27,10 @@ class Post < ActiveRecord::Base
   end
 
 private
-
   def push(ch,id)
     begin
       Pusher.trigger(ch, 'new_post', {
-        message: self.as_json.merge({publisher: id})
+        message:  ActiveModel::SerializableResource.new(self,{serializer: PostSerializer}).as_json.merge({publisher: id})
       })
     rescue Pusher::Error => e
       puts "*********************"
