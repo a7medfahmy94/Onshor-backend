@@ -8,8 +8,8 @@ class Post < ActiveRecord::Base
   validates :user_id , presence: true
   validates_associated :user
 
-  after_create :publish_own_post, if: :reply?
-  after_create :reply, unless: :reply?
+  after_create :publish_own_post, unless: :reply?
+  after_create :reply, if: :reply?
   before_create :set_defaults
 
 
@@ -55,7 +55,7 @@ private
   end
 
   def reply?
-    reply_to.nil?
+    !reply_to.nil?
   end
 
   def reply
