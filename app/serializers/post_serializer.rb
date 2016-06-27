@@ -1,6 +1,8 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id , :content , :number_of_shares , :number_of_ignores
-  belongs_to :user
-  has_many :posts_users
-  has_many :users , through: :posts_users
+  attributes :id , :content , :number_of_shares , :number_of_ignores, :priority, :user_id
+
+
+  def priority
+    Post.priorities[object.priority]
+  end
 end
