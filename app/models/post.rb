@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  enum priority: [:high, :medium, :low]
   belongs_to :user
   has_many :posts_users
   has_many :users , through: :posts_users
