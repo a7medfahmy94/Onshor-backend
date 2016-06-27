@@ -57,10 +57,6 @@ private
   end
 
   def reply
-    puts "_______________________________"
-    puts "here"
-    puts "_______________________________"
-    puts "_______________________________"
     receiver_device_id = User.find(reply_to).device_id
     push(receiver_device_id, user.id)
   end
