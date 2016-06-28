@@ -5,5 +5,11 @@ Rails.application.routes.draw do
       post :share
     end
   end
-  resources :users, only: [:show, :update, :destroy]
+  resources :users, only: [:show, :update, :destroy] do
+    collection do
+
+      post ':user_one/block/:user_two' => "users#block"
+    end
+
+  end
 end

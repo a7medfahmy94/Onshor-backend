@@ -17,6 +17,11 @@ class Post < ActiveRecord::Base
     km = ENV["NORMAL_USER_CIRCLE"].to_f
     users = unseen_users
     circle = users.within(km, origin: origin).pluck(:device_id)
+    puts "*********SENDING TO********"
+    puts "***************************"
+    puts circle.inspect
+    puts "***************************"
+    puts "***************************"
     unless circle.empty?
       circle.each do |ch|
         push(ch,origin.id)
@@ -44,7 +49,8 @@ private
   end
 
   def unseen_users
-    User.where.not(id: user_ids + [user_id])
+    blocking_users = Blocking.where(user_two: user.id).map(&:user_one)
+    User.where.not(id: user_ids + [user_id] + blocking_users)
   end
 
   def set_defaults

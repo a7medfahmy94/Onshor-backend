@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  # POST /users/:user_one/block/:user_two
+  def block
+    Blocking.create(user_one: params[:user_one], user_two: params[:user_two])
+    render json: :ok
+  end
+
   private
 
     def set_user
