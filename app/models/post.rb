@@ -16,15 +16,16 @@ class Post < ActiveRecord::Base
   def publish_post(origin)
     km = ENV["NORMAL_USER_CIRCLE"].to_f
     users = unseen_users
-    circle = users.within(km, origin: origin).pluck(:device_id)
+    circle = users.within(km, origin: origin)
     puts "*********SENDING TO********"
     puts "***************************"
     puts circle.inspect
     puts "***************************"
     puts "***************************"
     unless circle.empty?
-      circle.each do |ch|
-        push(ch,origin.id)
+      circle.each do |user|
+        push(user.device_id,origin.id)
+        self.posts_users << PostsUser.create(user: user)
       end
     end
   end

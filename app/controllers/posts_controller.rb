@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   # POST /posts/:id?:user_id
   def share
     @user = User.find(params[:user_id])
-    PostsUser.create(user: @user, post: @post, action: :share)
+    PostsUser.where(user: @user, post: @post).first.update(action: "share")
     @post.number_of_shares += 1
     @post.save
     @post.publish_post(@user)
